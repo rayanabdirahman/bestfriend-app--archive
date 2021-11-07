@@ -1,7 +1,15 @@
 import React from 'react';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthTemplate, Button, Space, Typography } from '../../components';
+import { AuthStackParamList } from '../../navigation/domain/interfaces';
+import { AuthStackScreenNamesEnum } from '../../navigation/domain/enums';
 
-const SignUpScreen: React.FC = () => {
+type Props = NativeStackScreenProps<
+  AuthStackParamList,
+  AuthStackScreenNamesEnum.SIGN_UP
+>;
+
+const SignUpScreen: React.FC<Props> = ({ navigation }) => {
   return (
     <AuthTemplate
       title="Let's get started!"
@@ -14,7 +22,12 @@ const SignUpScreen: React.FC = () => {
 
         <Space justify="center" direction="horizontal" align="center">
           <Typography.Text>Already have an account? </Typography.Text>
-          <Button onPress={() => alert('links clicked')} type="link">
+          <Button
+            onPress={() =>
+              navigation.navigate(AuthStackScreenNamesEnum.SIGN_IN)
+            }
+            type="link"
+          >
             Sign in
           </Button>
         </Space>

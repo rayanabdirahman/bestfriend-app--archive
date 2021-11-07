@@ -4,14 +4,12 @@ import { ActivityIndicator, SafeAreaView } from 'react-native';
 import { ThemeProvider } from 'styled-components';
 import useCachedResources from './src/hooks/useCachedResources';
 import theme from './src/styles/constants/theme';
-import SignInScreen from './src/screens/SignIn';
-import SignUpScreen from './src/screens/SignUp';
+import Navigation from './src/navigation';
 
 function App() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {/* <SignInScreen /> */}
-      <SignUpScreen />
+      <Navigation />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
