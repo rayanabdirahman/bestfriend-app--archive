@@ -9,7 +9,8 @@ export const text = styled.Text<TextProps>`
 `;
 
 export const title = styled.Text<TitleProps>`
-  font-size: 20px;
+  /* font-size: 20px; */
+  font-size: ${({ level }) => (level === 2 ? '18px' : '20px')};
   font-family: ${({ theme }) => theme.font.family.bold};
   margin-bottom: 8px;
 `;

@@ -4,8 +4,12 @@ import Typography from '../Typography';
 import { Props } from '.';
 
 export const button = styled(NativeButton)<Props>`
-  background-color: ${({ type, theme }) =>
-    type === 'primary' ? theme.color.brand : 'transparent'};
+  background-color: ${({ type, disabled, theme }) =>
+    disabled === true
+      ? theme.color.disabledgray
+      : type === 'primary'
+      ? theme.color.brand
+      : 'transparent'};
   margin-bottom: ${({ type }) => (type !== 'link' ? '16px' : '0px')};
   width: ${({ block }) => (block === true ? '100%' : 'auto')};
   border-color: ${({ type, theme }) =>
@@ -13,8 +17,10 @@ export const button = styled(NativeButton)<Props>`
 `;
 
 export const text = styled(Typography.Text)<Props>`
-  color: ${({ type, theme }) =>
-    type === 'link'
+  color: ${({ type, disabled, theme }) =>
+    disabled === true
+      ? theme.color.lightgray
+      : type === 'link'
       ? theme.color.brand
       : type === 'primary'
       ? theme.color.white

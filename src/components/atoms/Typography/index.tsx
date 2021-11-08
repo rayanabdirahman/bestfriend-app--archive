@@ -12,8 +12,8 @@ const Text: React.FC<TextProps> = (props) => (
   <styled.text {...props}>{props.children}</styled.text>
 );
 
-const Title: React.FC<TitleProps> = ({ children }) => (
-  <styled.title>{children}</styled.title>
+const Title: React.FC<TitleProps> = (props) => (
+  <styled.title {...props}>{props.children}</styled.title>
 );
 
 export default { Text, Title };

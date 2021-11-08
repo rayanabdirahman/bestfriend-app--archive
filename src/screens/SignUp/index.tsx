@@ -16,7 +16,13 @@ const SignUpScreen: React.FC<Props> = ({ navigation }) => {
       subTitle="Your place to buy, discover and share the brands you love."
     >
       <Space align="center">
-        <Button onPress={() => alert('button clicked')} type="primary" block>
+        <Button
+          onPress={() =>
+            navigation.navigate(AuthStackScreenNamesEnum.SIGN_UP_FORM_NAME)
+          }
+          type="primary"
+          block
+        >
           Sign up with email
         </Button>
 
