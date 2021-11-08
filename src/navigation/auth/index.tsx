@@ -3,11 +3,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { AuthStackScreenNamesEnum } from '../domain/enums';
 import SignUpScreen from '../../screens/SignUp';
 import SignInScreen from '../../screens/SignIn';
-import SignUpFormNameScreen from '../../screens/SignUp/components/SignUpFormName';
+import SignUpFormNameScreen from '../../screens/SignUp/SignUpFormName';
 import theme from '../../styles/constants/theme';
-import SignUpFormUsernameScreen from '../../screens/SignUp/components/SignUpFormUsername';
-import SignUpFormEmailScreen from '../../screens/SignUp/components/SignUpFormEmail';
-import SignUpFormPasswordScreen from '../../screens/SignUp/components/SignUpFormPassword';
+import SignUpFormUsernameScreen from '../../screens/SignUp/SignUpFormUsername';
+import SignUpFormEmailScreen from '../../screens/SignUp/SignUpFormEmail';
+import SignUpFormPasswordScreen from '../../screens/SignUp/SignUpFormPassword';
 import SignInFormScreen from '../../screens/SignIn/SignInForm';
 
 const defaultOptions = {
