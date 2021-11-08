@@ -5,4 +5,5 @@ export type AuthStackParamList = {
   SignUpFormUsername: undefined;
   SignUpFormEmail: undefined;
   SignUpFormPassword: undefined;
+  SignInForm: undefined;
 };

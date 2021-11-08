@@ -16,7 +16,11 @@ const SignInScreen: React.FC<Props> = ({ navigation }) => {
       subTitle="Your place to buy, discover and share the brands you love."
     >
       <Space align="center">
-        <Button onPress={() => alert('button clicked')} type="primary" block>
+        <Button
+          onPress={() => navigation.push(AuthStackScreenNamesEnum.SIGN_IN_FORM)}
+          type="primary"
+          block
+        >
           Sign in with email
         </Button>
 

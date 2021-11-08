@@ -8,6 +8,7 @@ import theme from '../../styles/constants/theme';
 import SignUpFormUsernameScreen from '../../screens/SignUp/components/SignUpFormUsername';
 import SignUpFormEmailScreen from '../../screens/SignUp/components/SignUpFormEmail';
 import SignUpFormPasswordScreen from '../../screens/SignUp/components/SignUpFormPassword';
+import SignInFormScreen from '../../screens/SignIn/SignInForm';
 
 const defaultOptions = {
   title: '',
@@ -54,6 +55,11 @@ const AuthStackNavigator: React.FC = (): JSX.Element => (
       name={AuthStackScreenNamesEnum.SIGN_UP_FORM_PASSWORD}
       component={SignUpFormPasswordScreen}
       options={{ ...authFormOptions, title: 'Sign up' }}
+    />
+    <AuthStack.Screen
+      name={AuthStackScreenNamesEnum.SIGN_IN_FORM}
+      component={SignInFormScreen}
+      options={{ ...authFormOptions, title: 'Sign in' }}
     />
   </AuthStack.Navigator>
 );
