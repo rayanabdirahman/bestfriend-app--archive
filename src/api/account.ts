@@ -1,4 +1,5 @@
 import axios from 'axios';
+import config from '../config';
 import { SignInModel, SignUpModel } from '../domain/interfaces/account';
 
 type AccountApi = {
@@ -6,13 +7,11 @@ type AccountApi = {
   signUp(model: SignUpModel): Promise<string>;
 };
 
-const API_BASE_URL = 'http://22f3-79-66-221-212.ngrok.io/api/v1';
-
 const AccountApi: AccountApi = {
   async signUp(model: SignUpModel): Promise<string> {
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/account/signup`,
+        `${config.API_DEV_URL}/account/signup`,
         model
       );
       return response.data.data;
@@ -23,7 +22,7 @@ const AccountApi: AccountApi = {
   async signIn(model: SignInModel): Promise<string> {
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/account/signin`,
+        `${config.API_DEV_URL}/account/signin`,
         model
       );
       return response.data.data;
