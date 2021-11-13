@@ -9,3 +9,12 @@ export type SignUpModel = {
   email: string;
   password: string;
 };
+
+export type UserModel = {
+  id: string;
+  createdAt: string;
+  email: string;
+  isAdmin: boolean;
+  updatedAt: string;
+  username: string;
+};

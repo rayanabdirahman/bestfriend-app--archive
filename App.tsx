@@ -5,6 +5,8 @@ import { ThemeProvider } from 'styled-components';
 import useCachedResources from './src/hooks/useCachedResources';
 import theme from './src/styles/constants/theme';
 import Navigation from './src/navigation';
+import { Provider } from 'react-redux';
+import { store } from './src/store';
 
 function App() {
   return (
@@ -21,8 +23,10 @@ export default function (): JSX.Element {
     return <ActivityIndicator />;
   }
   return (
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </Provider>
   );
 }
