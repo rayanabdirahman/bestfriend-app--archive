@@ -1,4 +1,5 @@
 import React from 'react';
+import { ActivityIndicator } from 'react-native';
 import { ButtonProps } from 'react-native-ui-lib';
 import * as styled from './styled';
 
@@ -6,6 +7,7 @@ export type Props = ButtonProps & {
   type?: 'primary' | 'secondary' | 'link';
   block?: boolean;
   disabled?: boolean;
+  loading?: boolean;
 };
 
 const Button: React.FC<Props> = (props) => (
@@ -17,7 +19,7 @@ const Button: React.FC<Props> = (props) => (
     disabled={props.disabled}
   >
     <styled.text type={props.type} disabled={props.disabled}>
-      {props.children}
+      {props.loading ? <ActivityIndicator /> : <>{props.children}</>}
     </styled.text>
   </styled.button>
 );
