@@ -40,18 +40,16 @@ const SignUpFormEmailScreen: React.FC<Props> = ({ navigation }) => {
         />
       </View>
 
-      <Space justify="center" direction="horizontal" align="center">
-        <Button
-          onPress={() =>
-            navigation.navigate(AuthStackScreenNamesEnum.SIGN_UP_FORM_PASSWORD)
-          }
-          type="primary"
-          block
-          disabled={email ? false : true}
-        >
-          Next
-        </Button>
-      </Space>
+      <Button
+        onPress={() =>
+          navigation.navigate(AuthStackScreenNamesEnum.SIGN_UP_FORM_PASSWORD)
+        }
+        type="primary"
+        block
+        disabled={email ? false : true}
+      >
+        Next
+      </Button>
     </AuthFormTemplate>
   );
 };
