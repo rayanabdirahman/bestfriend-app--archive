@@ -7,6 +7,7 @@ import theme from './src/styles/constants/theme';
 import Navigation from './src/navigation';
 import { Provider } from 'react-redux';
 import { store } from './src/store';
+import { NativeBaseProvider } from 'native-base';
 
 function App() {
   return (
@@ -25,7 +26,9 @@ export default function (): JSX.Element {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <App />
+        <NativeBaseProvider>
+          <App />
+        </NativeBaseProvider>
       </ThemeProvider>
     </Provider>
   );

@@ -80,7 +80,7 @@ const SignInFormScreen: React.FC<Props> = ({ navigation }) => {
         type="primary"
         block
         disabled={BUTTON_DISABLED_STATE}
-        loading={isLoading}
+        isLoading={isLoading}
       >
         Sign in
       </Button>

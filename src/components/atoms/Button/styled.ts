@@ -1,9 +1,8 @@
 import styled from 'styled-components/native';
-import { Button as NativeButton } from 'react-native-ui-lib';
-import Typography from '../Typography';
+import { Button } from 'native-base';
 import { Props } from '.';
 
-export const button = styled(NativeButton)<Props>`
+export const button = styled(Button)<Props>`
   background-color: ${({ type, disabled, theme }) =>
     disabled === true
       ? theme.color.disabledgray
@@ -14,17 +13,5 @@ export const button = styled(NativeButton)<Props>`
   width: ${({ block }) => (block === true ? '100%' : 'auto')};
   border-color: ${({ type, theme }) =>
     type === 'secondary' ? theme.color.lightgray : 'transparent'};
-`;
-
-export const text = styled(Typography.Text)<Props>`
-  color: ${({ type, disabled, theme }) =>
-    disabled === true
-      ? theme.color.lightgray
-      : type === 'link'
-      ? theme.color.brand
-      : type === 'primary'
-      ? theme.color.white
-      : theme.color.black};
-  font-family: ${({ type, theme }) =>
-    type !== 'link' ? theme.font.family.medium : theme.font.family.regular};
+  padding: ${({ type }) => (type === 'link' ? '0' : '8px')};
 `;
