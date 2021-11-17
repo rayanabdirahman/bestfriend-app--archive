@@ -8,6 +8,8 @@ export type TextProps = {
 
 export type TitleProps = { level?: number };
 
+export type FeedbackTextProps = { type?: 'error' | 'success' };
+
 const Text: React.FC<TextProps> = (props) => (
   <styled.text {...props}>{props.children}</styled.text>
 );
@@ -16,4 +18,8 @@ const Title: React.FC<TitleProps> = (props) => (
   <styled.title {...props}>{props.children}</styled.title>
 );
 
-export default { Text, Title };
+const FeedbackText: React.FC<FeedbackTextProps> = (props) => (
+  <styled.feedbackText {...props}>{props.children}</styled.feedbackText>
+);
+
+export default { Text, Title, FeedbackText };

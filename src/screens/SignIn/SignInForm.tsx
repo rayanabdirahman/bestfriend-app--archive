@@ -1,17 +1,15 @@
 import React, { useEffect } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Incubator, View } from 'react-native-ui-lib';
-import { Button } from '../../components';
+import { Formik } from 'formik';
+import { Button, Typography } from '../../components';
 import { AuthStackParamList } from '../../navigation/domain/interfaces';
 import { AuthStackScreenNamesEnum } from '../../navigation/domain/enums';
 import AuthFormTemplate from '../../components/templates/AuthFormTemplate';
-import theme from '../../styles/constants/theme';
 import { TextInput } from 'react-native';
 import useSignInFormInputs from './hooks/useSignInFormInputs';
-import { useSelector } from 'react-redux';
-import { State } from '../../store';
-import { SessionState } from '../../store/interface';
-const { TextField } = Incubator;
+import { Box, Input, VStack } from 'native-base';
+import { SignInModel } from '../../domain/interfaces/account';
+import { SignInValidationSchema } from '../../validation/account';
 
 type Props = NativeStackScreenProps<
   AuthStackParamList,
@@ -19,15 +17,9 @@ type Props = NativeStackScreenProps<
 >;
 
 const SignInFormScreen: React.FC<Props> = ({ navigation }) => {
-  const { isLoading } = useSelector<State, SessionState>(
-    (state) => state.session
-  );
   const emailInputRef = React.useRef<TextInput>();
   const passwordInputRef = React.useRef<TextInput>();
-  const { email, setEmail, password, setPassword, handleSignIn } =
-    useSignInFormInputs();
-
-  const BUTTON_DISABLED_STATE = isLoading || !email || !password ? true : false;
+  const { handleSignIn, initialValues, isLoading } = useSignInFormInputs();
 
   useEffect(() => {
     emailInputRef.current?.focus();
@@ -38,52 +30,64 @@ const SignInFormScreen: React.FC<Props> = ({ navigation }) => {
       title="Welcome back!"
       subTitle="Enter your credentials to continue"
     >
-      <View row bottom style={{ marginBottom: 24 }}>
-        <TextField
-          ref={emailInputRef as any}
-          placeholder="Email"
-          containerStyle={{ flex: 1 }}
-          fieldStyle={{
-            borderBottomWidth: 1,
-            borderColor: theme.color.lightgray,
-            paddingBottom: 4
-          }}
-          onChangeText={(value) => setEmail(value)}
-          enableErrors
-          validate={['required', 'email']}
-          validateOnChange
-          validationMessage={['Email is required', 'Email is invalid']}
-        />
-      </View>
-
-      <View row bottom style={{ marginBottom: 24 }}>
-        <TextField
-          ref={passwordInputRef as any}
-          placeholder="Password"
-          containerStyle={{ flex: 1 }}
-          fieldStyle={{
-            borderBottomWidth: 1,
-            borderColor: theme.color.lightgray,
-            paddingBottom: 4
-          }}
-          onChangeText={(value) => setPassword(value)}
-          enableErrors
-          validate={['required']}
-          validateOnChange
-          validationMessage={['Password is required']}
-          hint="Password mush be at least 8 characters long"
-        />
-      </View>
-
-      <Button
-        onPress={handleSignIn}
-        type="primary"
-        block
-        disabled={BUTTON_DISABLED_STATE}
-        isLoading={isLoading}
+      <Formik
+        initialValues={initialValues}
+        validationSchema={SignInValidationSchema}
+        onSubmit={(values: SignInModel) => {
+          console.log(values);
+          handleSignIn(values);
+        }}
       >
-        Sign in
-      </Button>
+        {(formik) => (
+          <VStack space="2xl" w="100%">
+            <Box>
+              <Input
+                ref={emailInputRef}
+                value={formik.values.email}
+                type="email"
+                placeholder="Email"
+                variant="underlined"
+                onChangeText={formik.handleChange('email')}
+                onBlur={formik.handleBlur('email')}
+              />
+              {formik.errors.email && (
+                <Typography.FeedbackText type="error">
+                  {formik.errors.email}
+                </Typography.FeedbackText>
+              )}
+            </Box>
+
+            <Box>
+              <Input
+                ref={passwordInputRef}
+                value={formik.values.password}
+                type="password"
+                placeholder="Password"
+                variant="underlined"
+                onChangeText={formik.handleChange('password')}
+                onBlur={formik.handleBlur('password')}
+              />
+              {formik.errors.password && (
+                <Typography.FeedbackText type="error">
+                  {formik.errors.password}
+                </Typography.FeedbackText>
+              )}
+            </Box>
+
+            <Button
+              onPress={() => formik.handleSubmit()}
+              type="primary"
+              block
+              disabled={
+                isLoading || !formik.isValid || !formik.dirty ? true : false
+              }
+              isLoading={isLoading}
+            >
+              Sign in
+            </Button>
+          </VStack>
+        )}
+      </Formik>
     </AuthFormTemplate>
   );
 };

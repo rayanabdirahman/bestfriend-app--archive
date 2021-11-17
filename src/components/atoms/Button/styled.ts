@@ -13,5 +13,5 @@ export const button = styled(Button)<Props>`
   width: ${({ block }) => (block === true ? '100%' : 'auto')};
   border-color: ${({ type, theme }) =>
     type === 'secondary' ? theme.color.lightgray : 'transparent'};
-  padding: ${({ type }) => (type === 'link' ? '0' : '8px')};
+  padding: ${({ type }) => (type === 'link' ? '0' : '10px')};
 `;

@@ -1,34 +1,30 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SignInModel } from '../../../domain/interfaces/account';
+import { State } from '../../../store';
 import { signInUser } from '../../../store/actions/account';
+import { SessionState } from '../../../store/interface';
 
 type ReturnType = {
-  email: string;
-  password: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-  setPassword: React.Dispatch<React.SetStateAction<string>>;
-  handleSignIn: () => void;
+  handleSignIn: (model: SignInModel) => void;
+  initialValues: SignInModel;
+  isLoading: boolean;
 };
 
 export default function useSignInFormInputs(): ReturnType {
   const dispatch = useDispatch();
-  const [email, setEmail] = React.useState<string>('');
-  const [password, setPassword] = React.useState<string>('');
+  const { isLoading } = useSelector<State, SessionState>(
+    (state) => state.session
+  );
+  const initialValues: SignInModel = { email: '', password: '' };
 
-  const handleSignIn = async () => {
-    const model: SignInModel = {
-      email,
-      password
-    };
+  const handleSignIn = async (model: SignInModel) => {
     dispatch(signInUser(model));
   };
 
   return {
-    email,
-    password,
-    setEmail,
-    setPassword,
-    handleSignIn
+    handleSignIn,
+    initialValues,
+    isLoading
   };
 }
