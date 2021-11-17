@@ -8,8 +8,15 @@ import theme from './src/styles/constants/theme';
 import Navigation from './src/navigation';
 import { Provider } from 'react-redux';
 import { store } from './src/store';
+import useToast from './src/hooks/useToast';
 
 function App() {
+  const { showToast, alerts } = useToast();
+
+  React.useEffect(() => {
+    showToast();
+  }, [alerts]);
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <Navigation />

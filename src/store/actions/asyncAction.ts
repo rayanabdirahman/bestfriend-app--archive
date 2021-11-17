@@ -37,7 +37,6 @@ export function async<T, P>(
   ...args: any[]
 ) {
   return async (dispatch: any) => {
-    console.log('async: ', type);
     dispatch(startedAsyncAction(type));
     try {
       const payload = await action(...args);
