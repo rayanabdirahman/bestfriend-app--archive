@@ -11,6 +11,7 @@ const initialState: SessionState = {
 export default (state = initialState, action: AnyAction): SessionState => {
   switch (action.type) {
     case AccountActionType.SIGN_IN:
+    case AccountActionType.SIGN_OUT:
     case AccountActionType.SET_CURRENT_USER: {
       return { ...state, isLoading: true };
     }
@@ -23,8 +24,9 @@ export default (state = initialState, action: AnyAction): SessionState => {
       const { token, user } = action.payload;
       return { ...state, token, user, isLoading: false };
     }
-    case AccountActionType.SIGN_IN_FAIL: {
-      return { ...state, isLoading: false };
+    case AccountActionType.SIGN_IN_FAIL:
+    case AccountActionType.SIGN_OUT_SUCCESS: {
+      return { ...state, user: null, token: null, isLoading: false };
     }
     default: {
       return state;

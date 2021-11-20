@@ -13,6 +13,7 @@ type SetCurrentUserReturnType = {
 
 type AccountService = {
   signIn(model: SignInModel): Promise<AccountAccessReturnType>;
+  signOut(): Promise<void>;
   setCurrentUser(): Promise<SetCurrentUserReturnType>;
 };
 
@@ -22,6 +23,9 @@ const AccountService: AccountService = {
     LocalStorageService.setAccessToken(token);
     LocalStorageService.setUser(user);
     return { user, token };
+  },
+  async signOut(): Promise<void> {
+    LocalStorageService.clearAll();
   },
   async setCurrentUser(): Promise<SetCurrentUserReturnType> {
     const user = await LocalStorageService.getUser();

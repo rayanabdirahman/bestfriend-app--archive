@@ -1,10 +1,19 @@
 import React from 'react';
-import { ScreenContainer, Typography } from '../../components';
+import { View } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { Button, ScreenContainer, Typography } from '../../components';
+import { signOutUserAction } from '../../store/actions/account';
 
 const FeedScreen: React.FC = () => {
+  const dispatch = useDispatch();
   return (
     <ScreenContainer>
-      <Typography.Text>Feed Screen</Typography.Text>
+      <View>
+        <Typography.Text>Feed Screen</Typography.Text>
+        <Button type="primary" onPress={() => dispatch(signOutUserAction())}>
+          Sign out
+        </Button>
+      </View>
     </ScreenContainer>
   );
 };

@@ -19,6 +19,7 @@ export enum AccountActionType {
   SET_CURRENT_USER = '[Account]: SET_CURRENT_USER',
   SET_CURRENT_USER_SUCCESS = '[Account]: SET_CURRENT_USER_SUCCESS',
   SET_CURRENT_USER_FAIL = '[Account]: SET_CURRENT_USER_FAIL',
+  SIGN_OUT = '[Account]: SIGN_OUT',
   SIGN_OUT_SUCCESS = '[Account]: SIGN_OUT_SUCCESS',
   SIGN_OUT_FAIL = '[Account]: SIGN_OUT_FAIL'
 }
