@@ -10,10 +10,16 @@ const initialState: SessionState = {
 
 export default (state = initialState, action: AnyAction): SessionState => {
   switch (action.type) {
-    case AccountActionType.SIGN_IN: {
+    case AccountActionType.SIGN_IN:
+    case AccountActionType.SET_CURRENT_USER: {
       return { ...state, isLoading: true };
     }
     case AccountActionType.SIGN_IN_SUCCESS: {
+      const { token, user } = action.payload;
+      return { ...state, token, user, isLoading: false };
+    }
+    case AccountActionType.SET_CURRENT_USER_SUCCESS:
+    case AccountActionType.SET_CURRENT_USER_FAIL: {
       const { token, user } = action.payload;
       return { ...state, token, user, isLoading: false };
     }

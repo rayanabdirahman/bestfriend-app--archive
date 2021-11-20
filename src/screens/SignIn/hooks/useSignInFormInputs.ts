@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SignInModel } from '../../../domain/interfaces/account';
 import { State } from '../../../store';
-import { signInUser } from '../../../store/actions/account';
+import { signInUserAction } from '../../../store/actions/account';
 import { SessionState } from '../../../store/interface';
 
 type ReturnType = {
@@ -19,7 +19,7 @@ export default function useSignInFormInputs(): ReturnType {
   const initialValues: SignInModel = { email: '', password: '' };
 
   const handleSignIn = async (model: SignInModel) => {
-    dispatch(signInUser(model));
+    dispatch(signInUserAction(model));
   };
 
   return {

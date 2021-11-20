@@ -18,3 +18,8 @@ export type UserModel = {
   updatedAt: string;
   username: string;
 };
+
+export type AccountAccessReturnType = {
+  token: string;
+  user: UserModel;
+};

@@ -16,6 +16,9 @@ export enum AccountActionType {
   SIGN_IN = '[Account]: SIGN_IN',
   SIGN_IN_SUCCESS = '[Account]: SIGN_IN_SUCCESS',
   SIGN_IN_FAIL = '[Account]: SIGN_IN_FAIL',
+  SET_CURRENT_USER = '[Account]: SET_CURRENT_USER',
+  SET_CURRENT_USER_SUCCESS = '[Account]: SET_CURRENT_USER_SUCCESS',
+  SET_CURRENT_USER_FAIL = '[Account]: SET_CURRENT_USER_FAIL',
   SIGN_OUT_SUCCESS = '[Account]: SIGN_OUT_SUCCESS',
   SIGN_OUT_FAIL = '[Account]: SIGN_OUT_FAIL'
 }

@@ -6,12 +6,19 @@ import { ThemeProvider } from 'styled-components';
 import useCachedResources from './src/hooks/useCachedResources';
 import theme from './src/styles/constants/theme';
 import Navigation from './src/navigation';
-import { Provider } from 'react-redux';
-import { store } from './src/store';
+import { Provider, useSelector } from 'react-redux';
+import { State, store } from './src/store';
 import useToast from './src/hooks/useToast';
+import { SessionState } from './src/store/interface';
+import useAuthGuard from './src/hooks/useAuthGuard';
+import { Spinner } from './src/components';
 
 function App() {
   const { showToast, alerts } = useToast();
+  const { isAuthCheckComplete } = useAuthGuard();
+  const { token, isLoading } = useSelector<State, SessionState>(
+    (state) => state.session
+  );
 
   React.useEffect(() => {
     showToast();
@@ -19,7 +26,11 @@ function App() {
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <Navigation />
+      {isLoading || !isAuthCheckComplete ? (
+        <Spinner.FullScreen />
+      ) : (
+        <Navigation isUserSignedIn={token ? true : false} />
+      )}
       <StatusBar style="auto" />
     </SafeAreaView>
   );
@@ -28,7 +39,11 @@ function App() {
 export default function (): JSX.Element {
   const isLoadingComplete = useCachedResources();
   if (!isLoadingComplete) {
-    return <ActivityIndicator />;
+    return (
+      <SafeAreaView style={{ flex: 1, justifyContent: 'center' }}>
+        <ActivityIndicator />
+      </SafeAreaView>
+    );
   }
   return (
     <Provider store={store}>
